@@ -4,14 +4,13 @@
 2. Connect the database to the UI and show all signed-up users.
 3. Validate email addresses and handle errors (no crashes).
 
----
 
  Step 1: Database Setup (MariaDB)
 
  Created a database called `dol`.
  Added a `users` table with these fields:
 
-```sql
+sql
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -19,27 +18,26 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-```
+
 
 The **email** column is marked `UNIQUE` so that duplicate emails are not allowed.
 
----
+
 
  Step 2: Configuration File
 
-* Made a `conf.php` file with the database credentials:
+ Made a `conf.php` file with the database credentials:
 
 php
 $conf['db_host'] = "localhost";
 $conf['db_user'] = "root";
 $conf['db_pass'] = "munyoiks7";
 $conf['db_name'] = "dol";
-```
+
 
 * Connected to MariaDB using **MySQLi**.
 * Added error handling in case the connection fails.
 
----
 
  Step 3: Signup Form
 
@@ -58,7 +56,6 @@ Validation & Duplication Check:
 * If duplicate → show error.
 * If not duplicate → insert the new user.
 
----
 
  Step 4: Sending Email Notification
 
@@ -66,13 +63,12 @@ After successful signup, send a **welcome/verification email** using `mail()` (o
 
 Example email body:
 
-```
 Hello [User],
 You requested an account on [Site].
 Click the verification link to complete registration.
 Regards,
 System Admin
-```
+
 
  Step 5: Display Users
 
@@ -80,10 +76,7 @@ System Admin
 * Displayed them in ascending order (by ID).
 * Each user is shown with a number, name, and email.
 
----
-
-✅ Achievements
-
+Achievements
 1. Email Notification → User receives an email after signup.
 2. Database + UI Connection → Users can see a list of all signups.
 3. Error Handling → Wrong or duplicate email is handled without crashing.
